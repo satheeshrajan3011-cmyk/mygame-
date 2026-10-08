@@ -1,6 +1,7 @@
 import random
 import time
 import sys
+import winsound  # Added sound framework
 
 def print_slow(str):
     for letter in str:
@@ -39,6 +40,7 @@ def run_game():
 
         if choice == "1":
             speed += random.randint(15, 30)
+            winsound.Beep(600, 200)  # Acceleration tone
             fuel -= random.randint(8, 15)
             distance_covered += int(speed / 4)
         elif choice == "2":
@@ -47,12 +49,15 @@ def run_game():
             distance_covered += int(speed / 4)
         elif choice == "3":
             speed = max(0, speed - 30)
+            winsound.Beep(250, 400)  # Braking tone
             distance_covered += int(speed / 4)
         elif choice == "4":
             speed = 0
             fuel = 100
             car_health = min(100, car_health + 25)
             print_slow("🔧 Pit stop complete! Refueled and repaired.")
+            winsound.Beep(440, 150)  # Pit stop chimes
+            winsound.Beep(880, 150)
 
         # Move Rival
         rival_distance += random.randint(6, 9)
