@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum Tapper App</title>
+    <style>
+        /* Sleek, interactive dark theme layout */
+        body {
+            background-color: #0b0c10;
+            color: #c5c6c7;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            user-select: none; /* Prevents text selection highlighting when double tapping */
+        }
+
+        .app-container {
+            text-align: center;
+            padding: 30px;
+            border: 2px solid #1f2833;
+            background-color: #1f2833;
+            border-radius: 16px;
+            box-shadow: 0 0 20px #66fcf1;
+            width: 80%;
+            max-width: 350px;
+        }
+
+        h1 {
+            color: #45f3ff;
+            font-size: 20px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+
+        /* Large counter display */
+        .counter-display {
+            font-size: 72px;
+            font-weight: bold;
+            color: #66fcf1;
+            margin: 20px 0;
+            font-family: monospace;
+            text-shadow: 0 0 10px rgba(102, 252, 241, 0.5);
+            transition: transform 0.05s ease;
+        }
+
+        /* Large circular tapping button */
+        .tap-zone {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background: transparent;
+            border: 3px solid #66fcf1;
+            color: #66fcf1;
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            outline: none;
+            font-family: inherit;
+            margin-bottom: 25px;
+            transition: all 0.1s ease;
+            box-shadow: 0 0 10px rgba(102, 252, 241, 0.2);
+        }
+
+        /* Interactive visual feedback when pressed */
+        .tap-zone:active {
+            background-color: #66fcf1;
+            color: #0b0c10;
+            transform: scale(0.95);
+            box-shadow: 0 0 25px #66fcf1;
+        }
+
+        /* Simple secondary reset option */
+        .reset-btn {
+            background: transparent;
+            color: #ff4d4d;
+            border: 1px solid #ff4d4d;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        .reset-btn:hover {
+            background-color: #ff4d4d;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <h1>Core Counter</h1>
+        
+        <!-- The visual number that updates dynamically -->
+        <div class="counter-display" id="score-counter">0</div>
+        
+        <!-- Interactive touch target element -->
+        <button class="tap-zone" id="tap-target" onclick="incrementCounter()">TAP</button>
+        
+        <br>
+        <button class="reset-btn" onclick="resetCounter()">Reset System</button>
+    </div>
+
+    <!-- Active App Logic -->
+    <script>
+        let count = 0;
+        const counterElement = document.getElementById('score-counter');
+
+        function incrementCounter() {
+            count++;
+            counterElement.textContent = count;
+            
+            // Subtle pop animation effect on the numbers when updating
+            counterElement.style.transform = 'scale(1.1)';
+            setTimeout(() => {
+                counterElement.style.transform = 'scale(1)';
+            }, 50);
+        }
+
+        function resetCounter() {
+            count = 0;
+            counterElement.textContent = count;
+        }
+    </script>
+
+</body>
+</html>
